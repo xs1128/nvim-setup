@@ -1,3 +1,5 @@
+vim.g.lazyvim_python_lsp = "pyright"
+
 -- for conciseness
 local opt = vim.opt
 
@@ -22,7 +24,7 @@ opt.smartcase = true
 opt.cursorline = true
 
 -- appearance
--- opt.termguicolors = true
+opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 

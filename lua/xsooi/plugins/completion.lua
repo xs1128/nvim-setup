@@ -1,7 +1,7 @@
 return {
-	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
+	{ "github/copilot.vim" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "onsails/lspkind.nvim" },
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
@@ -14,6 +14,7 @@ return {
 		config = function()
 			-- Set up nvim-cmp.
 			local cmp = require("cmp")
+			local lspkind = require("lspkind")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
@@ -47,6 +48,12 @@ return {
 				}, {
 					{ name = "buffer" },
 				}),
+				formatting = {
+					format = lspkind.cmp_format({
+						with_text = true, -- Display text along with the icon
+						maxwidth = 50, -- Set maximum width of completion items
+					}),
+				},
 			})
 		end,
 	},

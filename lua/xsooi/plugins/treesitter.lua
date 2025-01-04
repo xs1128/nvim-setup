@@ -10,6 +10,9 @@ return {
                 configs.setup({
                     ensure_installed = {
                         "c",
+                        "cpp",
+                        "cmake",
+                        "make",
                         "lua",
                         "vim",
                         "vimdoc",
@@ -19,6 +22,8 @@ return {
                         "javascript",
                         "html",
                         "python",
+                        "ninja",
+                        "rst",
                     },
                     sync_install = false,
                     auto_install = true,
