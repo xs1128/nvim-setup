@@ -1,4 +1,4 @@
-vim.g.lazyvim_python_lsp = "pyright"
+--vim.g.lazyvim_python_lsp = "pylsp"
 
 -- for conciseness
 local opt = vim.opt
@@ -40,3 +40,10 @@ opt.splitbelow = true
 
 opt.iskeyword:append("-")
 
+-- UFO folding
+opt.foldenable = true
+opt.foldcolumn = "1" -- '0' is not bad
+opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldlevelstart = 99
+opt.foldenable = true
+opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]

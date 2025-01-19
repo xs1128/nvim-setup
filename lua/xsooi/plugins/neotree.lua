@@ -13,6 +13,6 @@ return {
 				width = 30,
 			},
 		})
-		vim.keymap.set("n", "<S-a>", ":Neotree toggle<CR>")
+		vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>")
 	end,
 }
