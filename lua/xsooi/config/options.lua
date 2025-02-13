@@ -4,8 +4,8 @@
 local opt = vim.opt
 
 -- line nums
+opt.number = true
 opt.relativenumber = true
-opt.number = number
 
 -- tabs and indentations
 opt.tabstop = 4
@@ -14,7 +14,7 @@ opt.expandtab = true
 opt.autoindent = true
 
 -- line wrapping
-opt.wrap = false
+opt.wrap = true
 
 -- search settings
 opt.ignorecase = true

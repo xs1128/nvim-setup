@@ -45,8 +45,10 @@ return {
             lspconfig.clangd.setup({
                 capabilities = capabilities,
                 cmd = { "clangd", "--background-index" },
+                init_options = {
+                    --fallbackFlags = { "-std=c++20" },
+                },
             })
-
         end,
     },
 }
