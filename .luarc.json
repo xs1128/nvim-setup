@@ -3,6 +3,11 @@
         "vim",
         "number",
         "LazyVim",
-        "cmd"
+        "cmd",
+        "capabitlities"
+    ],
+    "diagnostics.disable": [
+        "undefined-doc-name",
+        "assign-type-mismatch"
     ]
 }

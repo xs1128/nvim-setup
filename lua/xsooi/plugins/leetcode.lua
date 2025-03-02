@@ -10,6 +10,8 @@ return {
 		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
 		opts = {
 			-- configuration goes here
+			---@type lc.lang
+			lang = "c",
 		},
 	},
 }
