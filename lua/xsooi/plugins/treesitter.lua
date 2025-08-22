@@ -4,7 +4,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
             build = ":TSUpdate",
-            config = function()
+            config = function(_, _)
                 local configs = require("nvim-treesitter.configs")
 
                 configs.setup({
@@ -20,11 +20,12 @@ return {
                         "python",
                         "ninja",
                         "rst",
+                        "ruby"
                     },
-                    sync_install = false,
+                    sync_install = true,
                     auto_install = true,
                     highlight = { enable = true },
-                    indent = { enable = false },
+                    -- indent = { enable = true },
                 })
             end,
         },
