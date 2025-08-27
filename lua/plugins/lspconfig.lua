@@ -7,6 +7,11 @@ return {
                 "lua_ls",
                 "pylsp",
                 "ruby_lsp",
+                "bashls",
+                "clangd",
+                "fortls",
+                "verible",
+                "marksman",
             },
             automatic_installation = true
         },
@@ -46,5 +51,4 @@ return {
             },
         }
     },
-
 }
