@@ -15,3 +15,5 @@ set.foldlevel = 99
 set.foldlevelstart = 99
 set.foldenable = true
 set.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+set.clipboard:append("unnamedplus")
