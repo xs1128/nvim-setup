@@ -1,28 +1,33 @@
 return {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    dependencies = {
-        'nvim-lua/plenary.nvim',
-        -- optional but recommended
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    },
+	"nvim-telescope/telescope.nvim",
+	tag = "0.1.8",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-file-browser.nvim",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	},
 
-    config = function()
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+	config = function()
+		local telescope = require("telescope")
+		telescope.setup({
+			defaults = {},
+			extensions = {
+				file_browser = { hijack_netrw = true },
+			},
+		})
 
-        require("telescope").setup({
-            defaults = {
-            },
-            pickers = {
-                find_files = {
-                    theme = "dropdown",
-                }
-            },
-            extensions = {
-            }
-        })
-    end,
+		telescope.load_extension("file_browser")
+		telescope.load_extension("fzf")
+
+		local builtin = require("telescope.builtin")
+		vim.keymap.set("n", "<leader>ff", function()
+			builtin.find_files({ hidden = true })
+		end, { desc = "Find Files" })
+		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
+		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
+		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
+		vim.keymap.set("n", "<leader>fw", function()
+			telescope.extensions.file_browser.file_browser({ path = "%:p:h", hidden = true })
+		end, { desc = "File Browser (Current Dir)" })
+	end,
 }
