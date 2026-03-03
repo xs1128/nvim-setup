@@ -7,7 +7,7 @@ set.tabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
 set.autoindent = true
-set.wrap = false
+-- set.wrap = false
 
 set.background = "dark"
 
