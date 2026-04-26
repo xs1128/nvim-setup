@@ -1,23 +1,11 @@
 return {
 	{
 		"kevinhwang91/nvim-ufo",
+		event = "BufReadPost",
 		dependencies = { "kevinhwang91/promise-async" },
 		config = function()
-			-- keybinds
 			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			}
-			local language_servers = vim.lsp.get_clients()
-			for _, ls in ipairs(language_servers) do
-				require("lspconfig")[ls].setup({
-					capabilities = capabilities,
-				})
-			end
 
 			-- display handler for folded lines
 			local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -54,6 +42,7 @@ return {
 	},
 	{
 		"luukvbaal/statuscol.nvim",
+		event = "BufReadPost",
 		opts = function()
 			local builtin = require("statuscol.builtin")
 			return {

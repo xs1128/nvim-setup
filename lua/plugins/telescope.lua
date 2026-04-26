@@ -1,9 +1,29 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.8",
+	branch = "0.1.x",
+	cmd = "Telescope",
+	keys = {
+		{
+			"<leader>ff",
+			function()
+				require("telescope.builtin").find_files({ hidden = true })
+			end,
+			desc = "Find Files",
+		},
+		{ "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live Grep" },
+		{ "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
+		{ "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Help" },
+		{
+			"<leader>fw",
+			function()
+				require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", hidden = true })
+			end,
+			desc = "File Browser (Current Dir)",
+		},
+	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-        { "nvim-tree/nvim-web-devicons", opts = {} },
+		{ "nvim-tree/nvim-web-devicons", opts = {} },
 		"nvim-telescope/telescope-file-browser.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
@@ -19,16 +39,5 @@ return {
 
 		telescope.load_extension("file_browser")
 		telescope.load_extension("fzf")
-
-		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>ff", function()
-			builtin.find_files({ hidden = true })
-		end, { desc = "Find Files" })
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
-		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
-		vim.keymap.set("n", "<leader>fw", function()
-			telescope.extensions.file_browser.file_browser({ path = "%:p:h", hidden = true })
-		end, { desc = "File Browser (Current Dir)" })
 	end,
 }

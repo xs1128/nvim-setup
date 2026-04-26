@@ -1,37 +1,34 @@
+local servers = { "lua_ls", "pyright", "ts_ls", "rust_analyzer", "clangd" }
+
 return {
 	{
 		"mason-org/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonLog", "MasonUninstall" },
 		opts = {},
 	},
 
 	{
 		"mason-org/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {
-				"lua_ls",
-				"pyright",
-				"ts_ls",
-				"rust_analyzer",
-				"clangd",
-			},
-		},
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "mason-org/mason.nvim" },
+		opts = { ensure_installed = servers },
 	},
 
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-			local servers = { "lua_ls", "pyright", "ts_ls", "rust_analyzer", "clangd" }
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
+			vim.lsp.config("*", { capabilities = capabilities })
 
-			for _, sv in ipairs(servers) do
-				vim.lsp.config(sv, { capabilities = capabilities })
-				vim.lsp.enable(sv)
-			end
 			vim.keymap.set("n", "<leader>dv", function()
-				vim.diagnostic.config({virtual_text = not vim.diagnostic.config().virtual_text})
+				vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
 			end, { desc = "Toggle diagnostics virtual text" })
-
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Details" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to def" })
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to ref" })
