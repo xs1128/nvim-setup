@@ -84,3 +84,5 @@ tags
 /contrib/result-*
 
 CMakeUserPresets.json
+
+.claude
