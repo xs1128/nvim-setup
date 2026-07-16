@@ -13,6 +13,7 @@ return {
 		{ "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live Grep" },
 		{ "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
 		{ "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Help" },
+		{ "<leader>gd", function() require("telescope.builtin").lsp_definitions() end, desc = "Go to Definition (Telescope)" },
 		{
 			"<leader>fw",
 			function()

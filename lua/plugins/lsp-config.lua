@@ -33,8 +33,22 @@ return {
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to def" })
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to ref" })
 			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "Auto Styling" })
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 		end,
+	},
+
+	{
+		"aznhe21/actions-preview.nvim",
+		keys = {
+			{
+				"<leader>ca",
+				function() require("actions-preview").code_actions() end,
+				mode = { "n", "v" },
+				desc = "Code Actions (preview)",
+			},
+		},
+		opts = {
+			backend = { "telescope", "nui" },
+		},
 	},
 
 	{
